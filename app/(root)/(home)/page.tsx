@@ -1,6 +1,5 @@
-
 export default function Home() {
   return (
-    <div className="h1-bold">Next Js</div>
+    <div className="h1-bold">Home</div>
   )
 }
