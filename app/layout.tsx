@@ -1,28 +1,29 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter,Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import React from "react";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/context/ThemeProvider";
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
-weight:['100','200','300','400','500','600','700','800','900'],
-variable:'--font-inter'
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
 });
 
-
-const spaceGrotesk=Space_Grotesk({subsets: ["latin"],
-weight:['300','400','500','600','700'],
-variable:'--font-spaceGrotesk'})
-
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-spaceGrotesk",
+});
 
 export const metadata: Metadata = {
   title: "DevFlow",
   description:
     "A community-driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, algorithms, data structures, and more.",
-    icons:{
-      icon:'/assets/images/site-logo.svg'
-    }
+  icons: {
+    icon: "/assets/images/site-logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -32,16 +33,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ClerkProvider appearance={{
-        elements:{
-          formButton:'primary-gradient',
-          footerActionLink:'primary-text-gradient hover:text-primary-500'
-        }
-      }}>
-        <body  className={`${inter.variable} ${spaceGrotesk.variable}`}>
-          {children}
-          </body>
-      </ClerkProvider>
+      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+        <ClerkProvider
+          appearance={{
+            elements: {
+              formButton: "primary-gradient",
+              footerActionLink: "primary-text-gradient hover:text-primary-500",
+            },
+          }}
+        >
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </ClerkProvider>
+      </body>
     </html>
   );
 }
