@@ -1,10 +1,12 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode:["class"],
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   theme: {
     container:{
@@ -21,7 +23,7 @@ const config: Config = {
           100: "#FFF1E6",
         },
         dark: {
-          100: "#00000",
+          100: "#000000",
           200: "#0F1117",
           300: "#151821",
           400: "#212734",
@@ -38,8 +40,8 @@ const config: Config = {
         "accent-blue": "#1DA1F2",
       },
       fontFamily: {
-        inter: ["var(--font--inter)"],
-        spaceGrotesk: ["var(--font--spaceGrotesk)"],
+        inter: ["var(--font-inter)"],
+        spaceGrotesk: ["var(--font-spaceGrotesk)"],
       },
       boxShadow: {
         "light-100":
@@ -72,4 +74,5 @@ const config: Config = {
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };
+
 export default config;
