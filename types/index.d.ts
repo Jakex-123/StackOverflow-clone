@@ -1,5 +1,5 @@
 export interface SidebarLink{
     imgURL:string;
-    route:String;
+    route:string;
     label:string;
 }
