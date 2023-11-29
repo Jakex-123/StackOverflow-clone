@@ -1,34 +1,52 @@
 import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
-import { HomePageFilters } from "@/constants/filters"
-  
-import React from 'react'
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-const Filter = () => {
-  return (
-    <div className="relative hidden max-md:flex">
-    <Select>
-      <SelectTrigger className="background-light800_dark300 border-slate-200 min-h-[56px]  border shadow-sm dark:border-slate-800 dark:text-white dark:shadow-none
-      sm:w-[170px]
-       ">
-        <SelectValue  placeholder="Select a Filter" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          {HomePageFilters.map((filter)=>{
-           return <SelectItem className="active:background-light800_dark300 dark:text-white " value={filter.value} key={filter.value}>{filter.name}</SelectItem>
-          })}
-        </SelectGroup>
-      </SelectContent>
-    </Select>
-    </div>
-  )
+import React from "react";
+
+interface Props {
+  filters: {
+    name: string;
+    value: string;
+  }[];
+  otherClasses?: string;
+  containerClasses?: string;
 }
 
-export default Filter
+const Filter = ({ filters, otherClasses, containerClasses }: Props) => {
+  return (
+    <div className={`relative ${containerClasses}`}>
+      <Select>
+        <SelectTrigger
+          className={`${otherClasses} body-regular light-border background-light800_dark300 text-dark500_light700 px-5 py-2.5`}
+        >
+          <div className="line-clamp-1">
+            <SelectValue placeholder="Select a Filter" />
+          </div>
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            {filters.map((filter) => {
+              return (
+                <SelectItem
+                  className="active:background-light800_dark300 dark:text-white "
+                  value={filter.value}
+                  key={filter.value}
+                >
+                  {filter.name}
+                </SelectItem>
+              );
+            })}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+};
+
+export default Filter;
