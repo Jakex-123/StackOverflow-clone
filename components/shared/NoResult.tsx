@@ -2,12 +2,11 @@ import Image from 'next/image'
 import React from 'react'
 import { Button } from '../ui/button'
 import Link from 'next/link'
-import { UrlObject } from 'url'
 
 interface Props{
-    title:String,
-    description:String,
-    link:UrlObject,
+    title:string,
+    description:string,
+    link:string,
     btnTxt:String,
 }
 
