@@ -31,7 +31,7 @@ const LeftSidebar = () => {
 
                 return(
                     <Link className={`flex items-center gap-4 bg-transparent p-4 ${isActive?'primary-gradient rounded-lg text-light-900':'text-dark300_light900 justify-start'}`} href={item.route} key={item.label}>
-                        <Image src={item.imgURL} width={20} height={20} alt={item.label} className='invert-colors' />
+                        <Image src={item.imgURL} width={20} height={20} alt={item.label} className={`${isActive?'':'invert-colors'}`} />
                         <p className={`${isActive?'base-bold':'base-medium'} max-lg:hidden`}>{item.label}</p>
                     </Link>
                 )
