@@ -19,6 +19,7 @@ import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
+import { createQuestion } from "@/lib/actions/question.action";
 
 const type:any='create';
 
@@ -36,12 +37,12 @@ const Question = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof QuestionSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     setIsSubmitting(true)
     try{
-      //
+      await createQuestion({})
     }
     catch(error){
 
@@ -121,7 +122,12 @@ const Question = () => {
               <FormControl className="mt-3.5 ">
                 <Editor
                   apiKey={`${process.env.NEXT_PUBLIC_TINY_API_KEY}`}
-                  onInit={(evt, editor) => (editorRef.current = editor)}
+                  onInit={(evt, editor) => {
+                    // @ts-ignore
+                    editorRef.current = editor
+                  }}
+                  onBlur={field.onBlur}
+                  onEditorChange={(content)=>field.onChange(content)}
                   initialValue=""
                   init={{
                     height: 350,
@@ -140,7 +146,7 @@ const Question = () => {
                 Introduce the problem and expand on what you put in the title.
                 Minimum 20 characters.
               </FormDescription>
-              <FormMessage />
+              <FormMessage className="text-red-600"/>
             </FormItem>
           )}
         />
