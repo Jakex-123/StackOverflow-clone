@@ -9,7 +9,7 @@ export interface IQuestion extends Document{
     downvotes:Schema.Types.ObjectId[],
     author:Schema.Types.ObjectId,
     answers:Schema.Types.ObjectId[],
-    createdAt:Date
+    createdOn:Date
 }
 
 const questionSchema=new Schema<IQuestion>({
@@ -54,7 +54,7 @@ const questionSchema=new Schema<IQuestion>({
             ref:'User'
         }
     ],
-    createdAt:{
+    createdOn:{
         type:Date,
         default:Date.now
     }
